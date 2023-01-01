@@ -1,0 +1,62 @@
+PROGRAM
+
+// deklarasi variabel-variabel yang dibutuhkan
+ListMhs LM
+ListMatkul LK
+adr_Mahasiswa M
+adr_Matkul L, B
+infotype_Matkul Z, A
+
+// memanggil constructor ListMhs() dan ListMatkul()
+CreateListMhs(LM)
+CreatListMatkul(LK)
+
+// menambahkan data mahasiswa ke daftar mahasiswa pada LM
+M = createElmMhs("Maulana","1301213427","SE")
+insertMhs(LM,M)
+M = createElmMhs("Ryvan","1301213422","IF")
+insertMhs(LM,M)
+M = createElmMhs("Gibran","1301215467","IF")
+insertMhs(LM,M)
+M = createElmMhs("Munzir","1301219632","SE")
+insertMhs(LM,M)
+M = createElmMhs("Dinda","1301218743","STD")
+insertMhs(LM,M)
+M = createElmMhs("Putri","1301218854","STD")
+insertMhs(LM,M)
+
+// menambahkan data mata kuliah ke daftar mata kuliah pada LK
+L = createElmMatkul("STD","CII32")
+insertMatkul(LK,L)
+B = createElmMatkul("MAVEK","CII22")
+insertMatkul(LK,B)
+
+// set mata kuliah untuk mahasiswa-mahasiswa pada daftar LM
+setMatkul(LM,LK,"1301213427","STD")
+setMatkul(LM,LK,"1301213422","STD")
+setMatkul(LM,LK,"1301215467","MAVEK")
+setMatkul(LM,LK,"1301219632","MAVEK")
+setMatkul(LM,LK,"1301218854","STD")
+
+// menampilkan data mahasiswa
+cout<<"------------Data Mahasiswa-------------"<<endl
+printInfoMhs(LM)
+cout<<endl
+
+// menampilkan data mata kuliah
+cout<<"------------Data MataKuliah------------"<<endl
+printInfoMatkul(LK)
+cout<<endl
+
+// menampilkan data gabungan mahasiswa dan mata kuliah
+cout<<"------------Data Gabungan--------------"<<endl
+tampil(LM,LK)
+cout<<endl
+
+// menghapus semua data mahasiswa dan mata kuliah
+cout<<"-----------Semua Data dihapus----------"<<endl
+deleteAll(LM,LK)
+
+// menampilkan data gabungan setelah dihapus
+tampil(LM,LK)
+cout<<"-------------Data Terhapus-------------"<<end
