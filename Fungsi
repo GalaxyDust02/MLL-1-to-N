@@ -1,0 +1,105 @@
+//YANG DIPERLUKAN UNTUK MAHASISWA
+// Fungsi ini akan membuat daftar mahasiswa kosong
+void CreateListMhs(&LM ListMhs){ 
+    LM.firstMhs <- NULL; // Elemen pertama dari daftar diatur ke NULL
+}
+// Fungsi ini akan mengalokasikan memori untuk elemen mahasiswa baru dan menugaskan nilai yang diberikan ke bidangnya
+adr_Mahasiswa createElmMhs(nama_mhs string, nim string,jurusan string){
+    adr_Mahasiswa M <- alokasi(elmMhs); // Alokasikan memori untuk elemen mahasiswa baru
+// Tetapkan nilai yang diberikan ke bidang elemen    
+    M->infoMhs.nama_mhs <- nama_mhs; 
+    M->infoMhs.nim <- nim;
+    M->infoMhs.jurusan <- jurusan;
+// Tetapkan elemen selanjutnya dari elemen mahasiswa ini ke     
+    M->NextMhs <- NULL; // Tetapkan elemen berikutnya dari daftar matkul (kursus) elemen mahasiswa ini ke NULL
+    M->Nextmatkul <- NULL; // Mengembalikan alamat elemen mahasiswa baru kembalikan M
+    return M;
+}
+// Fungsi ini akan memasukkan elemen mahasiswa baru ke dalam daftar
+void insertMhs(&LM ListMhs,PM adr_Mahasiswa){
+    if(LM.firstMhs == NULL){ // Jika daftar kosong, atur elemen pertama dari daftar ke elemen mahasiswa baru
+        LM.firstMhs <- PM;
+    }else{
+        adr_Mahasiswa p <- LM.firstMhs; 
+        while(p->NextMhs != NULL){ // Jika daftar tidak kosong, temukan elemen terakhir dari daftar dan atur elemen berikutnya ke elemen mahasiswa baru
+            p <- p->NextMhs;
+        }
+        p->NextMhs <- PM;
+    }
+}
+//YANG DIPERLUKAN UNTUK MATAKULIAH
+// Fungsi ini akan membuat daftar matkul kosong
+void CreatListMatkul(&LK ListMatkul){
+    LK.firstmatkul <- NULL; // Elemen pertama dari daftar diatur ke NULL
+}
+// Fungsi ini akan mengalokasikan memori untuk elemen matakuliah baru dan menugaskan nilai yang diberikan ke bidangnya
+adr_Matkul createElmMatkul(nama_matkul string,kode string){
+    adr_Matkul K <- alokasi(elmMatkul); // Alokasikan memori untuk elemen matkul baru
+// Tetapkan nilai yang diberikan ke bidang elemen    
+    K->infomatkul.nama_matkul <- nama_matkul;
+    K->infomatkul.kode <- kode;
+    K->Nextmatkul <- NULL; // Mengembalikan alamat elemen matakuliah baru kembalikan K;
+    return K;
+}
+// Fungsi ini akan memasukkan elemen matkul baru ke dalam daftar
+void insertMatkul(&LK ListMatkul,PK adr_Matkul){
+    if(LK.firstmatkul == NULL){ // Jika daftar kosong, atur elemen pertama dari daftar ke elemen matkul baru
+        LK.firstmatkul <- PK;
+    }else{
+        adr_Matkul p <-LK.firstmatkul;
+        while(p->Nextmatkul != NULL){// Jika daftar tidak kosong, temukan elemen terakhir dari daftar dan atur elemen berikutnya ke elemen matkul baru
+            p <- p->Nextmatkul;
+        }
+        p->Nextmatkul = PK;
+    }}
+//FUNGSI TAMBAHAN
+// Fungsi ini akan mencari elemen mahasiswa dengan nim yang diberikan dalam daftar dan mengembalikan alamatnya
+adr_Mahasiswa findMhs(LM ListMhs,nim string){
+    adr_Mahasiswa M <- LM.firstMhs; // Tetapkan elemen saat ini ke elemen pertama dari daftar
+    while((M!= NULL)&&(M->infoMhs.nim!= nim)){ // Ulangi daftar sampai akhir tercapai atau elemen dengan nim yang diberikan ditemukan
+        M <- M->NextMhs;
+    }
+    if(M->infoMhs.nim == nim){ // Jika elemen dengan nim yang diberikan ditemukan, kembalikan alamatnya
+        return M;
+    }else{ // Jika elemen dengan nim yang diberikan tidak ditemukan, kembalikan NULL
+        return NULL;
+    }
+}
+// Fungsi ini akan mencari elemen matkul dengan nama_matkul yang diberikan dalam daftar dan mengembalikan alamatnya
+adr_Matkul findMatkul(LK ListMatkul,nama_matkul string){
+    adr_Matkul K <- LK.firstmatkul; // Tetapkan elemen saat ini ke elemen pertama dari daftar
+    while((K!= NULL)&&(K->infomatkul.nama_matkul != nama_matkul)){ // Ulangi daftar sampai akhir tercapai atau elemen dengan nama_matkul yang diberikan ditemukan
+        K <- K->Nextmatkul;
+    }
+    if(K->infomatkul.nama_matkul == nama_matkul){// Jika elemen dengan nama_matkul yang diberikan ditemukan, kembalikan alamatnya
+        return K;
+    }else{ // Jika elemen dengan nama_matkul yang diberikan tidak ditemukan, kembalikan NULL
+        return NULL;
+    }
+}
+// Fungsi ini akan mengatur elemen berikutnya dari daftar matkul elemen mahasiswa ke elemen matkul yang diberikan
+void setMatkul(&LM ListMhs,&LK ListMatkul,nim string,nama_matkul string){
+// Temukan elemen mahasiswa dengan nim yang diberikan dan elemen matkul dengan nama_matkul yang diberikan    
+    adr_Mahasiswa M <- findMhs(LM,nim);
+    adr_Matkul K <- findMatkul(LK,nama_matkul);
+    if((M != NULL)&&(K != NULL)){ // Jika kedua elemen ditemukan, atur elemen berikutnya dari daftar elemen mahasiswa dari matkul ke elemen matkul
+        M->Nextmatkul <- K;
+    }
+}
+// Fungsi ini akan mencetak detail semua elemen mahasiswa dalam daftar, termasuk detail elemen matkulnya masing-masing
+void tampil(LM ListMhs,LK ListMatkul){
+    adr_Mahasiswa M <- LM.firstMhs; // Tetapkan elemen saat ini ke elemen pertama dari daftar
+    while(M != NULL){ // Ulangi daftar dan cetak detail setiap elemen mahasiswa
+        cout<<"Nama         : "<<M->infoMhs.nama_mhs<<endl; // Cetak nama mahasiswa
+        cout<<"NIM          : "<<M->infoMhs.nim<<endl; // Cetak NIM mahasiswa
+        if(M->Nextmatkul == NULL){ // Jika elemen mahasiswa tidak memiliki informasi matkul (mata kuliah), cetak "Tidak ada" (tidak tersedia)
+            cout<<"Mata Kuliah  : Tidak ada"<<endl;
+            cout<<"Kode         : Tidak ada"<<endl;
+        }else{ // Jika elemen mahasiswa memiliki informasi matkul (kursus), cetak nama dan kode matkul
+            cout<<"Mata Kuliah  : "<<M->Nextmatkul->infomatkul.nama_matkul<<endl;
+            cout<<"Kode         : "<<M->Nextmatkul->infomatkul.kode<<endl;
+        }
+        cout<<"--------------------------------------"<<endl;
+        M <- M -> NextMhs; // Pindahkan penunjuk ke elemen berikutnya dalam daftar mahasiswa
+    }
+}
