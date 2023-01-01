@@ -1,0 +1,36 @@
+Type infotype_Mahasiswa<
+	nama_mhs : string
+	nim : string
+	jurusan : string
+>
+Type infotype_Matkul<
+	nama_matkul : string
+	kode : string
+>
+Type addres : pointer to elmMhs
+Type addres : pointer to elmMatkul
+Type elmMhs<
+	infoMhs : infotype_Mahasiswa
+	NextMhs : addres_Mahasiswa
+	NextMatkul : addres_Matkul 
+>
+Type elmMatkul<
+	Infomatkul : infotype_Matkul
+	Nextmatkul : addres_ Nextmatkul
+>
+Type ListMhs<
+	firstMhs : addres_Mahasiswa
+>
+Type listMatkul<
+	firstmatkul : addres_Matkul
+>
+Procedure CreateListMhs (in/out  LM: ListMhs )
+Function createElmMhs(in nama_mhs : string, in string nim, in jurusan : string)->addres_Mahasiswa
+Procedure insertMhs(in/out LM : ListMhs, in PM : addres_Mahasiswa)
+Procedure CreateListMatkul(in/out LK : ListMatkul)
+Function createElmMatkul(in nama_matkul : string, out kode : kode)-> addres
+Procedure insertMatkul(in/out LK : ListMatkul, out PK : addres_matkul)
+Function findMhs(in LM : ListMhs, out nim : string)-> addres_Mahasiswa
+Function findMatkul(in LK : ListMatkul, out nama_matkul : string)-> addres_Matkul
+Procedure setMatkul(in/out LM : ListMhs, out nim : string, nama_matkul : string)
+Procedure tampil(out LM: ListMhs, LK: ListMatkul)
