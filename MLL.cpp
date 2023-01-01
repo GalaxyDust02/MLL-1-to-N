@@ -79,6 +79,7 @@ void tampil(ListMhs LM, ListMatkul LK){
     while(M != NULL){
         cout<<"Nama         : "<<M->infoMhs.nama_mhs<<endl;
         cout<<"NIM          : "<<M->infoMhs.nim<<endl;
+        cout<<"Jurusan      : "<<M->infoMhs.jurusan<<endl;
         if(M->Nextmatkul == NULL){
             cout<<"Mata Kuliah  : Tidak ada"<<endl;
             cout<<"Kode         : Tidak ada"<<endl;
