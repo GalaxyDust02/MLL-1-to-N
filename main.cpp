@@ -4,7 +4,7 @@ using namespace std;
 
 int main()
 {
-    cout<<"--------------KELOMPOK 7--------------"<<endl;
+    cout<<"--------------KELOMPOK 6--------------"<<endl;
     cout<<"---------------IF-45-02---------------"<<endl<<endl;
     // Data Mahasiswa
     ListMhs LM;
