@@ -74,6 +74,25 @@ void setMatkul(ListMhs &LM, ListMatkul &LK, string nim, string nama_matkul){
         M->Nextmatkul = K;
     }
 }
+void printInfoMhs(ListMhs LM){
+    adr_Mahasiswa M = LM.firstMhs;
+    while(M != NULL){
+        cout<<"Nama        : "<<M->infoMhs.nama_mhs<<endl;
+        cout<<"NIM         : "<<M->infoMhs.nim<<endl;
+        cout<<"Jurusan     : "<<M->infoMhs.jurusan<<endl;
+        cout<<"--------------------------------------"<<endl;
+        M = M -> NextMhs;
+    }
+}
+void printInfoMatkul(ListMatkul LK){
+    adr_Matkul K = LK.firstmatkul;
+    while(K != NULL){
+        cout<<"Nama Mata Kuliah : "<<K->infomatkul.nama_matkul<<endl;
+        cout<<"Kode             : "<<K->infomatkul.kode<<endl;
+        cout<<"--------------------------------------"<<endl;
+        K = K->Nextmatkul;
+    }
+}
 void tampil(ListMhs LM, ListMatkul LK){
     adr_Mahasiswa M = LM.firstMhs;
     while(M != NULL){
@@ -81,8 +100,8 @@ void tampil(ListMhs LM, ListMatkul LK){
         cout<<"NIM          : "<<M->infoMhs.nim<<endl;
         cout<<"Jurusan      : "<<M->infoMhs.jurusan<<endl;
         if(M->Nextmatkul == NULL){
-            cout<<"Mata Kuliah  : Tidak ada"<<endl;
-            cout<<"Kode         : Tidak ada"<<endl;
+            cout<<"Mata Kuliah  : Belum Ambil"<<endl;
+            cout<<"Kode         : -"<<endl;
         }else{
             cout<<"Mata Kuliah  : "<<M->Nextmatkul->infomatkul.nama_matkul<<endl;
             cout<<"Kode         : "<<M->Nextmatkul->infomatkul.kode<<endl;
@@ -90,4 +109,14 @@ void tampil(ListMhs LM, ListMatkul LK){
         cout<<"--------------------------------------"<<endl;
         M = M -> NextMhs;
     }
+}
+void deleteAll(ListMhs &LM, ListMatkul &LK){
+    adr_Mahasiswa M = LM.firstMhs;
+    while (M != NULL)
+    {
+        adr_Mahasiswa p = M;
+        M = M->NextMhs;
+        delete p;
+    }
+    LM.firstMhs = NULL;
 }
